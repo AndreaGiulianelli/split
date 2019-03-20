@@ -22,20 +22,30 @@ char** split(char* string,char* separator)
     {
         char** result;
         result = (char**) malloc((numElements+1) * sizeof(char*));
+        if(result == NULL)
+        {
+            return NULL;
+        }
         if(result!=NULL)
         {
             for(int i=0;i<=numElements;i++)
             {
                 result[i]= (char*) malloc(DIM_ROW);
+                if(result[i]==NULL)
+                {
+                    return NULL;
+                }
             }
         }
         int i = 0;
         char* buf;
         if((buf=strtok(stringX,separator))!=NULL){
-            copyString(&result[i],buf);
+            if(!copyString(&result[i],buf))
+                return NULL;
             i++;
             while((buf=strtok(NULL,separator))!=NULL){
-                copyString(&result[i],buf);
+                if(!copyString(&result[i],buf))
+                    return NULL;
                 i++;
             }
         }
@@ -47,12 +57,17 @@ char** split(char* string,char* separator)
 
 }
 
-void copyString(char** dest,char* src)
+int copyString(char** dest,char* src)
 {
     int n = strlen(src);
     if(n > DIM_ROW)
     {
         *dest = (char*) realloc(*dest,120 + (int)(ceil(n/120)));
+        if(*dest == NULL)
+        {
+            return 0;
+        }
     }
     strcpy(*dest,src);
+    return 1;
 }
