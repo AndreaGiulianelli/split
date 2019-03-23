@@ -4,4 +4,4 @@
 */
 
 char** split(char* string,char* separator);
-void copyString(char**,char*);
+int copyString(char**,char*);

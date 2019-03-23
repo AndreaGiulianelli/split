@@ -40,7 +40,7 @@ char** split(char* string,char* separator)
         int i = 0;
         char* buf;
         if((buf=strtok(stringX,separator))!=NULL){
-            if(!copyString(&result[i],buf))
+            if(copyString(&result[i],buf)!=1)
                 return NULL;
             i++;
             while((buf=strtok(NULL,separator))!=NULL){
@@ -62,7 +62,7 @@ int copyString(char** dest,char* src)
     int n = strlen(src);
     if(n > DIM_ROW)
     {
-        *dest = (char*) realloc(*dest,120 + (int)(ceil(n/120)));
+        *dest = (char*) realloc(*dest,120 * (int)(ceil(n/120) + 1));
         if(*dest == NULL)
         {
             return 0;

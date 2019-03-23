@@ -5,7 +5,7 @@
 
 int main()
 {
-    char string[] = "Ciao,come,va,,bastardo,fhwefheowihfuehwoifheouwrhoihw,aiofdhdiushuifhewuifuiwguifhuiwrhfo";
+    char string[] = "Ciao,come,va,,bastardo,fhwefheowihfueigd7ifgSeouwrhoihw,aiofdhdiushuifhewuifuiwguifhuiwrhfo";
     char delimeter[] = ",";
     char** result = split(string,delimeter);
     int i=0;
